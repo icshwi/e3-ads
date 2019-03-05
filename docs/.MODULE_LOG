@@ -1,0 +1,20 @@
+>>
+Script is used     : e3TemplateGenerator.bash
+Script Path        : /home/jhlee/ics_gitsrc/e3-tools/e3TemplateGenerator
+User               : jhlee
+Log Time           : 2019Mar05-0908-32CET
+e3 repo Hash       : c396a4d
+
+>>
+>> Your sources are located in https://bitbucket.org/europeanspallationsource.
+>> git submodule will be used.
+>> 
+EPICS_MODULE_NAME  : ads
+E3_MODULE_SRC_PATH : m-epics-twincat-ads
+EPICS_MODULE_URL   : https://bitbucket.org/europeanspallationsource
+E3_TARGET_URL      : https://github.com/icshwi
+>> 
+e3 module name     : e3-ads
+e3 module url full : https://bitbucket.org/europeanspallationsource/m-epics-twincat-ads
+e3 target url full : https://github.com/icshwi/e3-ads.git
+>> 
