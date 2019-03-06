@@ -31,6 +31,9 @@ E3_MODULE_SRC_PATH:=m-epics-twincat-ads
 E3_MODULE_MAKEFILE:=$(EPICS_MODULE_NAME).Makefile
 ADS_SRC_PATH:=ADS
 
+export ADS_MODULE_VERSION
+export ADS_SRC_PATH
+
 -include $(TOP)/configure/CONFIG_OPTIONS
 # The definitions shown below can also be placed in an untracked CONFIG_MODULE.local
 -include $(TOP)/configure/CONFIG_MODULE.local
