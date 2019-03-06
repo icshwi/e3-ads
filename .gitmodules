@@ -2,3 +2,8 @@
 	path = m-epics-twincat-ads
 	url = https://bitbucket.org/europeanspallationsource/m-epics-twincat-ads
 	ignore = all
+[submodule "ADS"]
+	path = ADS
+	url = https://github.com/Beckhoff/ADS
+	ignore = all
+	

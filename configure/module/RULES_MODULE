@@ -18,3 +18,12 @@ hdrs:
 #	$(QUIET)echo "INSTALL_LOCATION=$(M_DEVLIB2)"  >> $(TOP)/$(E3_MODULE_SRC_PATH)/configure/CONFIG_SITE
 #	$(SUDOBASH) "$(MAKE) -C $(E3_MODULE_SRC_PATH)"
 
+.PHONY: adsinit adscheckout $(ADS_SRC_PATH) git-submodule-sync
+
+adsinit: git-submodule-sync adscheckout
+
+adscheckout: $(ADS_SRC_PATH)
+	cd $(ADS_SRC_PATH) && git checkout $(ADS_MODULE_TAG)
+
+$(ADS_SRC_PATH):
+	$(QUIET) $(git_update)
