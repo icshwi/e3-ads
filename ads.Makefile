@@ -125,9 +125,6 @@ vlibs: $(VENDOR_LIBS)
 $(VENDOR_LIBS):
 	$(QUIET)$(SUDO) install -m 755 -d $(E3_MODULES_VENDOR_LIBS_LOCATION)/
 	$(QUIET)$(SUDO) install -m 755 $@ $(E3_MODULES_VENDOR_LIBS_LOCATION)/
-	$(foreach lib, $(notdir $@), $(QUIET)$(SUDO) ln -sf $(E3_MODULES_VENDOR_LIBS_LOCATION)/$(lib) $(E3_MODULES_VENDOR_LIBS_LOCATION)/$(lib:.$(ADS_MODULE_VERSION)=))
-
-$(var:suffix=replacement)
 
 
 .PHONY: $(VENDOR_LIBS) vlibs
