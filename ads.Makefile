@@ -17,8 +17,8 @@
 # 
 # Author  : Jeong Han Lee
 # email   : jeonghan.lee@gmail.com
-# Date    : Thursday, March  7 00:28:34 CET 2019
-# version : 0.0.1
+# Date    : Tuesday, March 12 17:47:28 CET 2019
+# version : 0.0.2
 #
 ## The following lines are mandatory, please don't change them.
 where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
@@ -44,6 +44,7 @@ APP:=adsApp
 APPDB:=$(APP)/Db
 APPSRC:=$(APP)/src
 
+CXXFLAGS += -std=c++11
 
 USR_INCLUDES += -I$(where_am_I)$(APPSRC)
 USR_INCLUDES += -I$(where_am_I)../$(ADS_SRC_PATH)/AdsLib
@@ -125,7 +126,7 @@ vlibs: $(VENDOR_LIBS)
 $(VENDOR_LIBS):
 	$(QUIET)$(SUDO) install -m 755 -d $(E3_MODULES_VENDOR_LIBS_LOCATION)/
 	$(QUIET)$(SUDO) install -m 755 $@ $(E3_MODULES_VENDOR_LIBS_LOCATION)/
-
+	$(foreach lib, $(notdir $@), $(QUIET)$(SUDO) ln -sf $(E3_MODULES_VENDOR_LIBS_LOCATION)/$(lib) $(E3_MODULES_VENDOR_LIBS_LOCATION)/$(lib:.$(ADS_MODULE_VERSION)=))
 
 .PHONY: $(VENDOR_LIBS) vlibs
 
