@@ -1,8 +1,16 @@
 diff --git Makefile Makefile
-index 0df5a96..21542f2 100644
+index 0df5a96..3b17ab9 100644
 --- Makefile
 +++ Makefile
-@@ -31,7 +31,13 @@ ifeq ($(OS_NAME),win32)
+@@ -4,7 +4,6 @@ VPATH = AdsLib
+ LIBS = -lpthread
+ LIB_NAME = AdsLib-$(OS_NAME).a
+ OBJ_DIR = obj
+-CXX :=$(CROSS_COMPILE)$(CXX)
+ CXXFLAGS += -std=c++11
+ CXXFLAGS += -pedantic
+ CXXFLAGS += -Wall
+@@ -31,7 +30,13 @@ ifeq ($(OS_NAME),win32)
  	LIBS += -lws2_32
  endif
  
@@ -17,7 +25,7 @@ index 0df5a96..21542f2 100644
  
  $(OBJ_DIR):
  	mkdir -p $@
-@@ -40,6 +46,8 @@ $(OBJ_FILES): | $(OBJ_DIR)
+@@ -40,6 +45,8 @@ $(OBJ_FILES): | $(OBJ_DIR)
  $(OBJ_FILES): $(OBJ_DIR)/%.o: %.cpp
  	$(CXX) -c $(CPPFLAGS) $(CXXFLAGS) $< -o $@
  
@@ -26,7 +34,7 @@ index 0df5a96..21542f2 100644
  $(LIB_NAME): $(OBJ_FILES)
  	$(AR) rvs $@ $?
  
-@@ -50,7 +58,7 @@ test: AdsLibTest.bin
+@@ -50,7 +57,7 @@ test: AdsLibTest.bin
  	./$<
  
  clean:

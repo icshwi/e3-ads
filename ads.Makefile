@@ -17,8 +17,8 @@
 # 
 # Author  : Jeong Han Lee
 # email   : jeonghan.lee@gmail.com
-# Date    : Tuesday, March 12 17:47:28 CET 2019
-# version : 0.0.2
+# Date    : Friday, March 29 00:01:17 CET 2019
+# version : 0.0.3
 #
 ## The following lines are mandatory, please don't change them.
 where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
@@ -38,7 +38,7 @@ endif
 
 ## Exclude linux-ppc64e6500
 EXCLUDE_ARCHS = linux-ppc64e6500
-
+EXCLUDE_ARCHS += linux-corei7-poky
 
 APP:=adsApp
 APPDB:=$(APP)/Db
