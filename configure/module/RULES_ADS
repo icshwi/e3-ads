@@ -51,4 +51,8 @@ adsclean:
 adsrebuild: adsclean adsbuild
 	
 	
+
+adsvers:
+	$(QUIET)echo "ADS_MODULE_TAG:=$(ADS_MODULE_TAG), origin : $(origin ADS_MODULE_TAG)"
+	$(QUIET)echo "ADS_MODULE_VERSION:=$(ADS_MODULE_VERSION), origin : $(origin ADS_MODULE_VERSION)"
 	

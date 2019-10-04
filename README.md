@@ -3,6 +3,13 @@ e3-ads
 ======
 ESS Site-specific EPICS IOC Application : ads
 
+## Dependency Plot
+
+|![ads dep](docs/ads.png)|
+| :---: |
+|**Figure 1** Depdendency Tree. |
+
+
 ## Beckhoff ADS
 
 We treat this Library as the Vendor library within e3. So this module has two git submodule links for twincat-ads and Beckhoff ADS. We only test this module within host `linux-x86_64` only. 
@@ -21,6 +28,7 @@ ADS_MODULE_VERSION:=7df1d60
 * Patch is needed to compile ADS into shared lib.
 
 ```
+make adsvers
 make adsinit
 make adspatch
 make adsbuild

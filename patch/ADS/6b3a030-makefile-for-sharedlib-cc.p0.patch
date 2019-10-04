@@ -1,0 +1,45 @@
+diff --git Makefile Makefile
+index 5c18af1..df50430 100644
+--- Makefile
++++ Makefile
+@@ -4,7 +4,6 @@ VPATH = AdsLib
+ LIBS = -lpthread
+ LIB_NAME = AdsLib-$(OS_NAME).a
+ OBJ_DIR = obj
+-CXX :=$(CROSS_COMPILE)$(CXX)
+ CXXFLAGS += -std=c++11
+ CXXFLAGS += -pedantic
+ CXXFLAGS += -Wall
+@@ -33,7 +32,13 @@ ifeq ($(OS_NAME),win32)
+ 	LIBS += -lws2_32
+ endif
+ 
+-all: $(LIB_NAME)
++SLIB_NAME = libADS.so.$(VERSION)
++CXXFLAGS += -fPIC
++LDFLAGS+=$(LIBS)
++
++all: $(SLIB_NAME)
++$(SLIB_NAME): $(OBJ_FILES)
++	$(CXX) -shared -fPIC $(LDFLAGS) -o $@ $^
+ 
+ $(OBJ_DIR):
+ 	mkdir -p $@
+@@ -42,6 +47,8 @@ $(OBJ_FILES): | $(OBJ_DIR)
+ $(OBJ_FILES): $(OBJ_DIR)/%.o: %.cpp
+ 	$(CXX) -c $(CPPFLAGS) $(CXXFLAGS) $< -o $@
+ 
++
++
+ $(LIB_NAME): $(OBJ_FILES)
+ 	$(AR) rvs $@ $?
+ 
+@@ -52,7 +59,7 @@ test: AdsLibTest.bin
+ 	./$<
+ 
+ clean:
+-	rm -f *.a *.o *.bin AdsLibTest/*.o $(OBJ_DIR)/*.o
++	rm -f *.a *.o *.bin AdsLibTest/*.o $(OBJ_DIR)/*.o $(SLIB_NAME)
+ 
+ uncrustify:
+ 	uncrustify --no-backup -c tools/uncrustify.cfg AdsLib*/*.h AdsLib*/*.cpp example/*.cpp
