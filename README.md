@@ -25,6 +25,17 @@ E3_MODULE_VERSION:=master
 ADS_MODULE_TAG:=7df1d60
 ADS_MODULE_VERSION:=7df1d60
 ```
+
+* Two steps are necessary to compile e3-ads
+```
+make init
+make adsall
+make rebuild
+```
+
+## Detailed Commands
+The following commands are used to do all procedure one by on.
+
 * A patch file is needed to compile ADS as a shared lib.
 
 ```
@@ -41,3 +52,4 @@ $ make init
 $ make build
 $ make install
 ```
+

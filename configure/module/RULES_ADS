@@ -15,8 +15,6 @@ done
 endef
 
 
-
-
 .PHONY: adsinit adscheckout $(ADS_SRC_PATH) git-submodule-sync
 
 adsinit: git-submodule-sync adscheckout
@@ -40,8 +38,11 @@ adspatch:
 adspatchrevert:
 	$(QUIET) $(call patch_revert_ads)
 
+
+.PHONY: adsbuild adsclean adsrebuild adsall adsvers
+
 adsbuild: 
-	make -C ADS VERSION=$(ADS_MODULE_VERSION)
+	make -C ADS VERSION=$(ADS_MODULE_VERSION) TARGET_ARCHS=$(T_A)
 
 
 adsclean:
@@ -51,6 +52,7 @@ adsclean:
 adsrebuild: adsclean adsbuild
 	
 	
+adsall: adsinit adspatch adsrebuild
 
 adsvers:
 	$(QUIET)echo "ADS_MODULE_TAG:=$(ADS_MODULE_TAG), origin : $(origin ADS_MODULE_TAG)"

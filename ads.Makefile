@@ -38,7 +38,7 @@ endif
 
 ## Exclude linux-ppc64e6500
 EXCLUDE_ARCHS = linux-ppc64e6500
-EXCLUDE_ARCHS += linux-corei7-poky
+#EXCLUDE_ARCHS += linux-corei7-poky
 
 APP:=adsApp
 APPDB:=$(APP)/Db
@@ -123,7 +123,7 @@ $(TMPS):
 
 vlibs: $(VENDOR_LIBS)
 
-$(VENDOR_LIBS):
+$(VENDOR_LIBS): 
 	$(QUIET)$(SUDO) install -m 755 -d $(E3_MODULES_VENDOR_LIBS_LOCATION)/
 	$(QUIET)$(SUDO) install -m 755 $@ $(E3_MODULES_VENDOR_LIBS_LOCATION)/
 	$(foreach lib, $(notdir $@), $(QUIET)$(SUDO) ln -sf $(E3_MODULES_VENDOR_LIBS_LOCATION)/$(lib) $(E3_MODULES_VENDOR_LIBS_LOCATION)/$(lib:.$(ADS_MODULE_VERSION)=))

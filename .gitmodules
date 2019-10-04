@@ -1,6 +1,7 @@
 [submodule "m-epics-twincat-ads"]
 	path = m-epics-twincat-ads
 	url = https://bitbucket.org/europeanspallationsource/m-epics-twincat-ads
+	branch=anders/target
 	ignore = dirty
 
 [submodule "ADS"]
