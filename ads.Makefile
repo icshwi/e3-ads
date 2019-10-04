@@ -25,8 +25,6 @@ where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 include $(E3_REQUIRE_TOOLS)/driver.makefile
 include $(E3_REQUIRE_CONFIG)/DECOUPLE_FLAGS
 
-
-
 ifneq ($(strip $(ASYN_DEP_VERSION)),)
 asyn_VERSION=$(ASYN_DEP_VERSION)
 endif
@@ -35,10 +33,7 @@ ifneq ($(strip $(BECKHOFFADS_DEP_VERSION)),)
 BeckhoffADS_VERSION=$(BECKHOFFADS_DEP_VERSION)
 endif
 
-
-
-## Exclude linux-ppc64e6500
-EXCLUDE_ARCHS = linux-ppc64e6500
+EXCLUDE_ARCHS += linux-ppc64e6500
 EXCLUDE_ARCHS += linux-corei7-poky
 
 APP:=adsApp
@@ -48,8 +43,6 @@ APPSRC:=$(APP)/src
 CXXFLAGS += -std=c++11
 
 USR_INCLUDES += -I$(where_am_I)$(APPSRC)
-USR_INCLUDES += -I$(where_am_I)../$(ADS_SRC_PATH)/AdsLib
-
 
 TEMPLATES += $(wildcard $(APPDB)/*.db)
 TEMPLATES += $(wildcard $(APPDB)/*.proto)
@@ -58,25 +51,10 @@ TEMPLATES += $(wildcard $(APPDB)/*.template)
 
 HEADERS += $(APPSRC)/adsAsynPortDriver.h
 HEADERS += $(APPSRC)/adsAsynPortDriverUtils.h
-# HEADERS += $(DBDINC_HDRS)
-
 
 SOURCES += $(APPSRC)/adsAsynPortDriver.cpp
 SOURCES += $(APPSRC)/adsAsynPortDriverUtils.cpp
 DBDS    += $(APPSRC)/ads.dbd
-
-# #
-# ADS_LIB = ADS
-# #
-# ifeq ($(T_A),linux-x86_64)
-# USR_LDFLAGS += -Wl,--enable-new-dtags
-# USR_LDFLAGS += -Wl,-rpath=$(E3_MODULES_VENDOR_LIBS_LOCATION)
-# USR_LDFLAGS += -L$(E3_MODULES_VENDOR_LIBS_LOCATION)
-# LIB_SYS_LIBS += $(ADS_LIB)
-# endif
-
-# VENDOR_LIBS += ../ADS/lib$(ADS_LIB).so.$(ADS_MODULE_VERSION)
-
 
 
 SCRIPTS += $(wildcard ../iocsh/*.iocsh)
@@ -110,14 +88,9 @@ $(TMPS):
 #
 .PHONY: db $(SUBS) $(TMPS)
 
-vlibs: $(VENDOR_LIBS)
+vlibs: 
 
-$(VENDOR_LIBS): 
-	$(QUIET)$(SUDO) install -m 755 -d $(E3_MODULES_VENDOR_LIBS_LOCATION)/
-	$(QUIET)$(SUDO) install -m 755 $@ $(E3_MODULES_VENDOR_LIBS_LOCATION)/
-	$(foreach lib, $(notdir $@), $(QUIET)$(SUDO) ln -sf $(E3_MODULES_VENDOR_LIBS_LOCATION)/$(lib) $(E3_MODULES_VENDOR_LIBS_LOCATION)/$(lib:.$(ADS_MODULE_VERSION)=))
-
-.PHONY: $(VENDOR_LIBS) vlibs
+.PHONY:  vlibs
 
 
 
