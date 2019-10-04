@@ -25,7 +25,7 @@ E3_MODULE_VERSION:=master
 ADS_MODULE_TAG:=7df1d60
 ADS_MODULE_VERSION:=7df1d60
 ```
-* Patch is needed to compile ADS into shared lib.
+* A patch file is needed to compile ADS as a shared lib.
 
 ```
 make adsvers
@@ -34,7 +34,7 @@ make adspatch
 make adsbuild
 ```
 
-
+* The shared library are bounded into the final e3 shared library.
 
 ```
 $ make init
