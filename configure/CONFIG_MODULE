@@ -8,6 +8,8 @@ E3_MODULE_VERSION:=08a9541
 # DEPENDENT MODULE VERSION
 ASYN_DEP_VERSION:=4.36.0
 #
+BECKHOFFADS_DEP_VERSION:=1.0.0
+#
 # In most case, we don't need to touch the following variables.
 #
 

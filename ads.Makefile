@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2018 - Present  European Spallation Source ERIC
+#  Copyright (c) 2018 - 2019  European Spallation Source ERIC
 #
 #  The program is free software: you can redistribute
 #  it and/or modify it under the terms of the GNU General Public License
@@ -17,8 +17,8 @@
 # 
 # Author  : Jeong Han Lee
 # email   : jeonghan.lee@gmail.com
-# Date    : Friday, March 29 00:01:17 CET 2019
-# version : 0.0.3
+# Date    : Saturday, October  5 01:44:11 CEST 2019
+# version : 0.0.1
 #
 ## The following lines are mandatory, please don't change them.
 where_am_I := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
@@ -27,18 +27,19 @@ include $(E3_REQUIRE_CONFIG)/DECOUPLE_FLAGS
 
 
 
-# If one would like to use the module dependency restrictly,
-# one should look at other modules makefile to add more
-# In most case, one should ignore the following lines:
-
 ifneq ($(strip $(ASYN_DEP_VERSION)),)
 asyn_VERSION=$(ASYN_DEP_VERSION)
 endif
 
+ifneq ($(strip $(BECKHOFFADS_DEP_VERSION)),)
+BeckhoffADS_VERSION=$(BECKHOFFADS_DEP_VERSION)
+endif
+
+
 
 ## Exclude linux-ppc64e6500
 EXCLUDE_ARCHS = linux-ppc64e6500
-#EXCLUDE_ARCHS += linux-corei7-poky
+EXCLUDE_ARCHS += linux-corei7-poky
 
 APP:=adsApp
 APPDB:=$(APP)/Db
@@ -49,12 +50,6 @@ CXXFLAGS += -std=c++11
 USR_INCLUDES += -I$(where_am_I)$(APPSRC)
 USR_INCLUDES += -I$(where_am_I)../$(ADS_SRC_PATH)/AdsLib
 
-# USR_CFLAGS   += -Wno-unused-variable
-# USR_CFLAGS   += -Wno-unused-function
-# USR_CFLAGS   += -Wno-unused-but-set-variable
-# USR_CPPFLAGS += -Wno-unused-variable
-# USR_CPPFLAGS += -Wno-unused-function
-# USR_CPPFLAGS += -Wno-unused-but-set-variable
 
 TEMPLATES += $(wildcard $(APPDB)/*.db)
 TEMPLATES += $(wildcard $(APPDB)/*.proto)
@@ -70,29 +65,23 @@ SOURCES += $(APPSRC)/adsAsynPortDriver.cpp
 SOURCES += $(APPSRC)/adsAsynPortDriverUtils.cpp
 DBDS    += $(APPSRC)/ads.dbd
 
-#
-ADS_LIB = ADS
-#
-ifeq ($(T_A),linux-x86_64)
-USR_LDFLAGS += -Wl,--enable-new-dtags
-USR_LDFLAGS += -Wl,-rpath=$(E3_MODULES_VENDOR_LIBS_LOCATION)
-USR_LDFLAGS += -L$(E3_MODULES_VENDOR_LIBS_LOCATION)
-LIB_SYS_LIBS += $(ADS_LIB)
-endif
+# #
+# ADS_LIB = ADS
+# #
+# ifeq ($(T_A),linux-x86_64)
+# USR_LDFLAGS += -Wl,--enable-new-dtags
+# USR_LDFLAGS += -Wl,-rpath=$(E3_MODULES_VENDOR_LIBS_LOCATION)
+# USR_LDFLAGS += -L$(E3_MODULES_VENDOR_LIBS_LOCATION)
+# LIB_SYS_LIBS += $(ADS_LIB)
+# endif
 
-VENDOR_LIBS += ../ADS/lib$(ADS_LIB).so.$(ADS_MODULE_VERSION)
+# VENDOR_LIBS += ../ADS/lib$(ADS_LIB).so.$(ADS_MODULE_VERSION)
 
 
 
 SCRIPTS += $(wildcard ../iocsh/*.iocsh)
 
-
-## This RULE should be used in case of inflating DB files 
-## db rule is the default in RULES_DB, so add the empty one
-## Please look at e3-mrfioc2 for example.
-
 db: 
-	echo $(VENDOR_LIBS)
 
 .PHONY: db 
 

@@ -4,9 +4,4 @@
 	branch=anders/target
 	ignore = dirty
 
-[submodule "ADS"]
-	path = ADS
-	url = https://github.com/Beckhoff/ADS
-	ignore = dirty
-
 	

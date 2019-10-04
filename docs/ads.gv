@@ -3,7 +3,8 @@ node [shape=record];
 base [label="base 7.0.3"]
 require [label="require 3.1.1"]
 ASYN [label="ASYN 4.36.0"]
+BECKHOFFADS [label="BECKHOFFADS 1.0.0"]
 ads [label="ads 08a9541"]
-base -> require -> { ASYN } ->  {  ads  } 
+base -> require -> { ASYN,BECKHOFFADS } ->  {  ads  } 
 } 
 
