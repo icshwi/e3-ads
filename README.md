@@ -23,6 +23,11 @@ We treat this Library as the Vendor library within e3. So this module has two gi
 ```
 EPICS_MODULE_TAG:=master
 E3_MODULE_VERSION:=master
+```
+* If necessary, please look at the ADS hash id, which e3-ads depends on. Its github repository is
+https://github.com/Beckhoff/ADS. Currently we use `7df1d60`. 
+
+```
 ADS_MODULE_TAG:=7df1d60
 ADS_MODULE_VERSION:=7df1d60
 ```
