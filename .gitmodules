@@ -1,5 +1,6 @@
 [submodule "epics-twincat-ads"]
-	path = pics-twincat-ads
+	path = epics-twincat-ads
 	url = https://github.com/EuropeanSpallationSource/epics-twincat-ads
+	ignore = dirty
 
 	
