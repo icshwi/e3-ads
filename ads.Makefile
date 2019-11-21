@@ -40,6 +40,9 @@ APP:=adsApp
 APPDB:=$(APP)/Db
 APPSRC:=$(APP)/src
 
+APPEX:=adsExApp
+APPEXDB:=$(APPEX)/Db
+
 CXXFLAGS += -std=c++11
 
 USR_INCLUDES += -I$(where_am_I)$(APPSRC)
@@ -48,6 +51,9 @@ TEMPLATES += $(wildcard $(APPDB)/*.db)
 TEMPLATES += $(wildcard $(APPDB)/*.proto)
 TEMPLATES += $(wildcard $(APPDB)/*.template)
 
+TEMPLATES += $(wildcard $(APPEXDB)/*.db)
+TEMPLATES += $(wildcard $(APPEXDB)/*.proto)
+TEMPLATES += $(wildcard $(APPEXDB)/*.template)
 
 HEADERS += $(APPSRC)/adsAsynPortDriver.h
 HEADERS += $(APPSRC)/adsAsynPortDriverUtils.h
